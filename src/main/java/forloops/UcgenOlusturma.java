@@ -1,4 +1,4 @@
-package for_loop;
+package forloops;
 
 public class UcgenOlusturma {
     public static void main(String[] args) {

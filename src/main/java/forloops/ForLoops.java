@@ -1,3 +1,5 @@
+package forloops;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -18,11 +20,6 @@ public class ForLoops {
 
         String longestWord="";
 
-        for (int i = 0; i <sentence.split("").length+1 ; i++) {
-           word= sentence.split(" ")[i].length();
-           longestWord+=lenght;
 
-        }
-        System.out.println(longestWord);
     }
 }
