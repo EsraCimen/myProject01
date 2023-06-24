@@ -41,13 +41,16 @@ public class Urun {
     }
 
     public void setMiktar(int miktar) {
-        if(this.miktar <0){
-            System.out.println("yeterli stok bulunmamaktadir");
+        try{if (miktar>=0) {
+            this.miktar = miktar;
         }else {
-            this.miktar=miktar;
+            System.out.println("Stokta yeterli urun bulunmamaktadir");
+        }
+
+        }catch(Exception e) {
+            System.out.println("Stokta yeterli urun bulunmamaktadir");
         }
     }
-
 
     public int getRaf() {
         return raf;

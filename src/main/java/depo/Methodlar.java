@@ -87,47 +87,54 @@ import java.util.*;
             urunlerhm.put(id-1,urun);
             System.out.println(urunlerhm);
         }
-        public void anaMenu (){
+        public void anaMenu () {
             System.out.println("-------------------ANA MENU--------------------");
             System.out.println("" +
-                    "\n"+
-                    "\t     1- URUN TANIMLAMA\n"+
-                    "\t     -----------------------\n"+
-                    "\t     2- URUN LISTELEME\n"+
-                    "\t     -----------------------\n"+
-                    "\t     3- URUNLERI GIRISI\n"+
-                    "\t     -----------------------\n"+
-                    "\t     4- URUN RAFINI DEGISTIRME\n"+
-                    "\t     -----------------------\n"+
-                    "\t     5- URUN CIKISI\n"+
-                    "\t     -----------------------\n"+
+                    "\n" +
+                    "\t     1- URUN TANIMLAMA\n" +
+                    "\t     -----------------------\n" +
+                    "\t     2- URUN LISTELEME\n" +
+                    "\t     -----------------------\n" +
+                    "\t     3- URUNLERI GIRISI\n" +
+                    "\t     -----------------------\n" +
+                    "\t     4- URUN RAFINI DEGISTIRME\n" +
+                    "\t     -----------------------\n" +
+                    "\t     5- URUN CIKISI\n" +
+                    "\t     -----------------------\n" +
                     "\t     Q- PROGRAMI SONLANDIR\n");
-            System.out.println("Lutfen Yappmak istediginiz islemi seciniz...");
-            String tercih=input.next();
-            switch (tercih){
-                case "1" : //Urun tanımlamasi
-                urunTanimlama();
+            do {
+                System.out.println("Lutfen Yappmak istediginiz islemi seciniz...");
+                String tercih = input.next();
+                switch (tercih) {
+                    case "1": //Urun tanımlamasi
+                        urunTanimlama();
 
+                        break;
+                    case "2": //Urun Listeleme
+                        urunListele();
+                        break;
+                    case "3": //Urun Girişi
+                        urunGirisi();
+                        break;
+                    case "4": //Raf guncelleme
+                        urunuRafaKoy();
+                        break;
+                    case "5":
+                        urunCikis();
+                        break;
+                    case "q":
+                    case "Q":
+                        System.out.println("Program sonlandirildi...");
+                        break;
+                    default:
+                        System.out.println("Lutfen gecerli bir tercih giriniz...");
+                }
+                if (tercih.equalsIgnoreCase("q")) {
                     break;
-                case "2" : //Urun Listeleme
-                 urunListele();
-                    break;
-                case "3" : //Urun Girişi
-                    urunGirisi();
-                    break;
-                case "4" : //Raf guncelleme
-                    urunuRafaKoy();
-                    break;
-                case "5":
-                    urunCikis();
-                    break;
-                case "q":
-                case"Q":
-                    System.out.println("Program sonlandirildi...");
-                    break;
-                default:
-                    System.out.println("Lutfen gecerli bir tercih giriniz...");
-            }
+                }
+
+
+            } while (true);
         }
     }
 

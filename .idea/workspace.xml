@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dfb7066c-a1ec-4883-8dd5-7c2460df9ca2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/depo/Methodlar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/depo/Runner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/depo/Urun.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/depo/Methodlar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/depo/Methodlar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/depo/Urun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/depo/Urun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/depo/Methodlar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/depo/Methodlar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/depo/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/depo/Runner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/depo/Urun.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/depo/Urun.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
