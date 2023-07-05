@@ -15,7 +15,6 @@ public class Urun {
     }
 
     public void setId(int id) {
-        id++;
         this.id = id;
     }
 
@@ -51,6 +50,7 @@ public class Urun {
             System.out.println("Stokta yeterli urun bulunmamaktadir");
         }
     }
+
 
     public int getRaf() {
         return raf;

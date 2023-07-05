@@ -6,6 +6,7 @@ import java.util.*;
     public class Methodlar extends Urun {
         static HashMap<Integer,Urun>urunlerhm=new HashMap<>();
         static Scanner input = new Scanner(System.in);
+        private static int globalId;
 
 
         public void urunTanimlama() {
@@ -21,15 +22,13 @@ import java.util.*;
                 urun.setUreticisi(input.next());
                 System.out.println("miktar");
                 urun.setMiktar(input.nextInt());
-                Random rand = new Random();
-                int id = rand.nextInt(1000);
-                urun.setId(id);
+                urun.setId(++globalId);
                 System.out.println("birim");
                 urun.setBirim(input.next());
                 System.out.println("raf");
                 urun.setRaf(input.nextInt());
 
-                urunlerhm.put(id,urun);
+                urunlerhm.put(urun.getId(), urun);
                 System.out.println("Urun ekleme islemini bırakmak icin 0 i devam etmek icin herhangi bir tusu tiklayiniz");
                 if (input.next().equals("0")) {
                     break;
@@ -57,11 +56,11 @@ import java.util.*;
         public void urunGirisi(){
             System.out.println("Lutfen degistirmek istediginiz urunun id sini giriniz");
             int id = input.nextInt();
-            Urun urun =urunlerhm.get(id-1);
+            Urun urun =urunlerhm.get(id);
             System.out.println("Lutfen eklemek istediginiz degeri girin");
             int eklenecekDeger = input.nextInt();
             urun.setMiktar(urun.getMiktar()+eklenecekDeger);
-            urunlerhm.put(id-1,urun);
+            urunlerhm.put(id,urun);
             System.out.println(urunlerhm);
 
 
@@ -70,21 +69,21 @@ import java.util.*;
         public void urunuRafaKoy(){
             System.out.println("Lutfen rafini degistirmek istediginiz urunun id sini giriniz");
             int id = input.nextInt();
-            Urun urun =urunlerhm.get(id-1);
+            Urun urun =urunlerhm.get(id);
             System.out.println("Lutfen hangi rafa eklemek istediginizi giriniz");
             int degistirilecekRaf= input.nextInt();
             urun.setRaf(degistirilecekRaf);
-            urunlerhm.put(id-1,urun);
+            urunlerhm.put(id,urun);
             System.out.println(urunlerhm);
         }
         public void urunCikis(){
             System.out.println("Lutfen cikisini yapmak istediginiz urunun id sini giriniz");
             int id = input.nextInt();
-            Urun urun =urunlerhm.get(id-1);
+            Urun urun =urunlerhm.get(id);
             System.out.println("Lutfen cikarmak istediginiz degeri girin");
             int cikilacakDeger = input.nextInt();
             urun.setMiktar(urun.getMiktar()-cikilacakDeger);
-            urunlerhm.put(id-1,urun);
+            urunlerhm.put(id,urun);
             System.out.println(urunlerhm);
         }
         public void anaMenu () {
@@ -103,8 +102,8 @@ import java.util.*;
                     "\t     -----------------------\n" +
                     "\t     Q- PROGRAMI SONLANDIR\n");
             do {
-                System.out.println("Lutfen Yappmak istediginiz islemi seciniz...");
-                String tercih = input.next();
+                System.out.println("Lutfen Yapmak istediginiz islemi seciniz...");
+                String tercih = input.next().toUpperCase();
                 switch (tercih) {
                     case "1": //Urun tanımlamasi
                         urunTanimlama();
@@ -122,14 +121,13 @@ import java.util.*;
                     case "5":
                         urunCikis();
                         break;
-                    case "q":
                     case "Q":
                         System.out.println("Program sonlandirildi...");
                         break;
                     default:
                         System.out.println("Lutfen gecerli bir tercih giriniz...");
                 }
-                if (tercih.equalsIgnoreCase("q")) {
+                if (tercih.equalsIgnoreCase("Q")) {
                     break;
                 }
 
