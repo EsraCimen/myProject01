@@ -39,17 +39,11 @@ public class Urun {
         return miktar;
     }
 
-    public void setMiktar(int miktar) {
-        try{if (miktar>=0) {
-            this.miktar = miktar;
-        }else {
-            System.out.println("Stokta yeterli urun bulunmamaktadir");
-        }
+   // public void setMiktar(int miktar) {
+   //     this.miktar=miktar;
+   // }
 
-        }catch(Exception e) {
-            System.out.println("Stokta yeterli urun bulunmamaktadir");
-        }
-    }
+
 
 
     public int getRaf() {
@@ -79,5 +73,19 @@ public class Urun {
                 ", raf=" + raf +
                 '}';
     }
+
+    public void setMiktar(int miktar){
+        try {
+            if (miktar < 0) {
+                throw new IllegalArgumentException("Stokta yeterli urun yoktur");
+            }
+            this.miktar = miktar;
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+
+
 
 }
