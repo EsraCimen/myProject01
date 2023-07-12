@@ -1,12 +1,15 @@
 package depo;
 
+
+import java.util.InputMismatchException;
+
 public class Urun {
     private int id ;
     private String urunIsmi;
     private String ureticisi;
     private int miktar;
     private String birim;
-    private int raf;
+    private String raf;
 
 
 
@@ -39,18 +42,24 @@ public class Urun {
         return miktar;
     }
 
-   // public void setMiktar(int miktar) {
-   //     this.miktar=miktar;
-   // }
+    public void setMiktar(int miktar){
+        try {
+            if (miktar < 0) {
+                throw new IllegalArgumentException("Stokta yeterli urun yoktur");
+            }
+            this.miktar = miktar;
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
 
 
+    }
 
-
-    public int getRaf() {
+    public String getRaf() {
         return raf;
     }
 
-    public void setRaf(int raf) {
+    public void setRaf(String raf) {
         this.raf = raf;
     }
 
@@ -74,16 +83,7 @@ public class Urun {
                 '}';
     }
 
-    public void setMiktar(int miktar){
-        try {
-            if (miktar < 0) {
-                throw new IllegalArgumentException("Stokta yeterli urun yoktur");
-            }
-            this.miktar = miktar;
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
-        }
-    }
+
 
 
 

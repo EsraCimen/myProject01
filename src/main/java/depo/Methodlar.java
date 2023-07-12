@@ -1,32 +1,45 @@
 package depo;
 
+import java.io.*;
 import java.util.*;
 
 
     public class Methodlar extends Urun {
         static HashMap<Integer,Urun>urunlerhm=new HashMap<>();
         static Scanner input = new Scanner(System.in);
-        private static int globalId;
+        private static int globalId=1000;
 
 
         public void urunTanimlama() {
-
-
-            System.out.println("Kullanici eklemek istemiyorsaniz 0 i eklemeye devam etmek icin urun adini giriniz");
+            System.out.println("Lutfen urun bilgilerini giriniz");
             do {
                 Urun urun = new Urun();
 
                 System.out.println("urunismi");
-                urun.setUrunIsmi(input.next());
+                urun.setUrunIsmi(input.next().replaceAll("[^a-zA-Z]",""));
                 System.out.println("uretici");
-                urun.setUreticisi(input.next());
-                System.out.println("miktar");
-                urun.setMiktar(input.nextInt());
+                urun.setUreticisi(input.next().replaceAll("[^a-zA-Z]",""));
+
+
+                do {
+                   try {
+                       System.out.println("miktar");
+                       int miktar = input.nextInt();
+                      urun.setMiktar(miktar);
+                       break;
+                  } catch (InputMismatchException e) {
+                      System.err.println("Hatali giris lutfen sayisal bir deger giriniz");
+                       input.nextLine();
+
+                   }
+               } while (true);
+
+
                 urun.setId(++globalId);
                 System.out.println("birim");
-                urun.setBirim(input.next());
+                urun.setBirim(input.next().replaceAll("[^a-zA-Z]",""));
                 System.out.println("raf");
-                urun.setRaf(input.nextInt());
+                urun.setRaf(input.next());
 
                 urunlerhm.put(urun.getId(), urun);
                 System.out.println("Urun ekleme islemini bırakmak icin 0 i devam etmek icin herhangi bir tusu tiklayiniz");
@@ -54,24 +67,44 @@ import java.util.*;
 
         }
         public void urunGirisi(){
-            System.out.println("Lutfen degistirmek istediginiz urunun id sini giriniz");
-            int id = input.nextInt();
-            Urun urun =urunlerhm.get(id);
-            System.out.println("Lutfen eklemek istediginiz degeri girin");
-            int eklenecekDeger = input.nextInt();
-            urun.setMiktar(urun.getMiktar()+eklenecekDeger);
-            urunlerhm.put(id,urun);
-            System.out.println(urunlerhm);
+int id=0;
+           do {
+               try {
+                   System.out.println("Lutfen degistirmek istediginiz urunun id sini giriniz");
+                   id = input.nextInt();
+                   Set<Integer> keys =urunlerhm.keySet();
+                   boolean result = urunlerhm.containsKey(id);
+                   if (result==false){
+                       throw new NullPointerException("boyle bir id yoktur gecerli id giriniz");}
+                   Urun urun =urunlerhm.get(id);
+                   System.out.println("Lutfen eklemek istediginiz degeri girin");
+                   int eklenecekDeger = input.nextInt();
+                   urun.setMiktar(urun.getMiktar()+eklenecekDeger);
+                   urunlerhm.put(id,urun);
+                   break;
+
+               } catch (NullPointerException e) {
+                   System.err.println(e.getMessage());
+               }
+           }while (true);
+           // Urun urun =urunlerhm.get(id);
+           // System.out.println("Lutfen eklemek istediginiz degeri girin");
+           // int eklenecekDeger = input.nextInt();
+           // urun.setMiktar(urun.getMiktar()+eklenecekDeger);
+           // urunlerhm.put(id,urun);
+//
+           // System.out.println(urunlerhm);
 
 
 
         }
+
         public void urunuRafaKoy(){
             System.out.println("Lutfen rafini degistirmek istediginiz urunun id sini giriniz");
             int id = input.nextInt();
             Urun urun =urunlerhm.get(id);
             System.out.println("Lutfen hangi rafa eklemek istediginizi giriniz");
-            int degistirilecekRaf= input.nextInt();
+            String degistirilecekRaf= input.next();
             urun.setRaf(degistirilecekRaf);
             urunlerhm.put(id,urun);
             System.out.println(urunlerhm);
@@ -86,7 +119,21 @@ import java.util.*;
             urunlerhm.put(id,urun);
             System.out.println(urunlerhm);
         }
-        public void anaMenu () {
+        public void yanlisGirilenUrunBilgisininDuzenlenmesi(){
+            System.out.println("Lutfen duzenleme yapmak istediginiz urunun id sini giriniz");
+            int id = input.nextInt();
+            Urun urun =urunlerhm.get(id);
+            System.out.println("Lutfen urun ismini giriniz");
+            urun.setUrunIsmi(input.next());
+            System.out.println("Lutfen uretici ismini giriniz");
+            urun.setUreticisi(input.next());
+            System.out.println("Lutfen urunun miktarini belirtin");
+            urun.setMiktar(input.nextInt());
+            System.out.println("Lutfen urunun raf bilgisini giriniz");
+            urun.setRaf(input.next());
+            System.out.println(urunlerhm);
+        }
+        public void anaMenu ()  {
             System.out.println("-------------------ANA MENU--------------------");
             System.out.println("" +
                     "\n" +
@@ -99,6 +146,8 @@ import java.util.*;
                     "\t     4- URUN RAFINI DEGISTIRME\n" +
                     "\t     -----------------------\n" +
                     "\t     5- URUN CIKISI\n" +
+                    "\t     -----------------------\n" +
+                    "\t     6- YANLIS GIRILEN URUN BILGISININ DUZENLENMESI\n" +
                     "\t     -----------------------\n" +
                     "\t     Q- PROGRAMI SONLANDIR\n");
             do {
@@ -121,6 +170,10 @@ import java.util.*;
                     case "5":
                         urunCikis();
                         break;
+                    case "6":
+                        yanlisGirilenUrunBilgisininDuzenlenmesi();
+                        break;
+
                     case "Q":
                         System.out.println("Program sonlandirildi...");
                         break;
